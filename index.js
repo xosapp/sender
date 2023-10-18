@@ -1,10 +1,18 @@
 const express = require('express');
 const app = express();
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 require('dotenv').config();
 app.use(express.json({limit: '1mb'}));
+app.use(cors());
 
 const port = process.env.PORT || 3000;
+
+const corsOptions = {
+    origin: ['https://xosapp.com', 'http://127.0.0.1:5500']
+};
+  
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
